@@ -39,7 +39,7 @@ output_dir = args.o
 if args.f:
     video_path = args.f
     audio_path = video_path.split('.')[0] + '.mp3'
-    extract_audio(video_path, audio_path)
+    extract_audio(video_path, audio_path, output_dir)
 
 if args.d != "":
     #extract audio of all files in a directory
@@ -55,3 +55,5 @@ if args.d != "":
             video_path = os.path.join(video_dir, video_file)
             audio_path = os.path.join(video_dir, video_file.split('.')[0] + '.mp3')
             extract_audio(video_path, audio_path, output_dir)
+
+    
