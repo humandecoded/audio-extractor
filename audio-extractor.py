@@ -23,11 +23,16 @@ def extract_audio(video_filepath, audio_filepath, output_dir):
     video.close()
 
 
-# set up command line arguments for either a file name or a directory
+# set up command line arguments for either a file name or a directory but not both
 parser = argparse.ArgumentParser(description='Extract audio from a video file')
-parser.add_argument('-f', type=str, help='Path to the video file')
-parser.add_argument('-d', type=str, help='Path to the directory containing video files', default="")
+
+exclusive_group = parser.add_mutually_exclusive_group(required=True)
+exclusive_group.add_argument('-f', type=str, help='Path to the video file')
+exclusive_group.add_argument('-d', type=str, help='Path to the directory containing video files')
+
 parser.add_argument('-o', type=str, help='Path to the output directory', default=os.getcwd())
+
+# parse the args
 args = parser.parse_args()
 
 # make sure that output directory has a slash at the end
